@@ -1,0 +1,94 @@
+{% load static %}
+{% load chunks %}
+<style>
+    .page-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color:transparent /* Blue background color */
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+    }
+
+    .page-btn span {
+        color: #fff; /* White text color */
+        font-size: 18px;
+        font-weight: bold;
+        padding: 8px 12px;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .page-btn span:hover {
+        background-color: #c4d9e7; /* Darker blue on hover */
+    }
+
+    .page-btn span:last-child {
+        background-color: #2ecc71; /* Green color for the '->' span */
+        padding: 8px 15px;
+    }
+
+    .page-btn span:last-child:hover {
+        background-color: #27ae60; /* Darker green on hover */
+    }
+</style>
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="filter__controls">
+                    
+                    <li data-filter=".new-arrivals">New Arrivals</li>
+                    
+                </ul>
+            </div>
+        </div>
+    
+        {% if products %}
+            {% for product_chunks in products|chunks:4 %}
+                {% if product_chunks %}
+                    <div class="row product__filter">
+                        {% for product in product_chunks %}
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                            <div class="product__item">
+                                <a href="{% url 'product_details' product.id %}">
+                                <div  class="product__item__pic set-bg" data-setbg="{{ product.images.url }}">
+                                    <span class="label">New</span>
+                                </div></a>
+                                <div class="product__item__text">
+                                    <h6>{{ product.title }}</h6>
+                                    <a href="#" class="add-cart">+ Add To Cart</a>
+                                    <h5>₹{{ product.price }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                        <div class="page-btn">
+                            {% if products.has_previous %}
+                            <a href="?page={{ products.previous_page_number }}"><span><<{{i}}</span></a>
+                            {% endif %}
+                            {% for i in products.paginator.page_range%}
+                            <a href="?page={{i}}"><span>{{i}}</span></a>
+                           {% endfor %}
+                           {% if products.has_next %}
+                           <a href="?page={{ products.next_page_number }}"><span>>>{{i}}</span></a>
+                           {% endif %}
+                            
+                            
+                        </div>
+                    </div>
+                {% else %}
+                    <p>No products available</p>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>No products available</p>
+        {% endif %}
+    </div>
+</section>
+<!-- Product Section End -->

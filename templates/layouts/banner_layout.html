@@ -1,0 +1,91 @@
+{% load static %}
+    
+
+   
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" >
+            <div class="row" >
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo" >
+                        <a href="{% url 'index' %}"style="padding-right: 50px;" ><img style="width: 70px; height: 60px;" src="{% static 'img/logo11.png' %}" alt="">TECH WORLD</a>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9">
+                    <div class="header__menu mobile-menu">
+                        <nav class="header__menu" style="padding-left: 400px;" >
+                            <ul>
+                                <li class="active"><a href="{% url 'index' %}"><img style="width: 50px; height: 50px;" src="{% static 'img/icon/home.png' %}"></a></li>
+                                <li><a href="{% url 'shop' %}"><img style="width: 50px; height: 50px;" src="{% static 'img/icon/shop.png' %}"></a></li>
+                                
+                                {% if user.is_authenticated %}
+                                    
+                                    <li><a href="{% url 'cust_account' %}"><img style="width: 50px; height: 50px;" src="{% static 'img/icon/user.png' %}"></a></li>
+                                   
+                                    <li><a href="{% url 'cart' %}"><img style="width: 50px; height: 50px;" src="{% static 'img/icon/shopping-cart.png' %}"> </a></li>
+                                    <li><a href="{% url 'logout' %}"><img style="width: 50px; height: 50px;" src="{% static 'img/icon/exit.png' %}"></a></li>
+                                    
+                                {% else %}
+                                    <li><a href="{% url 'account' %}">Login / Register</a></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    
+    <style>
+        .header__menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center; /* Align items vertically in the middle */
+        }
+    
+        .header__menu li {
+            margin-right: 10px; /* Adjust the margin as needed */
+        }
+    
+        
+        
+    </style>
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        <div class="hero__slider owl-carousel">
+            <div class="hero__items set-bg" data-setbg="{% static 'img/aa.jfif'%}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 col-md-8">
+                            <div class="hero__text">
+                                <h6 style=" text-shadow: 0 2px 2px #000;" >Collection of Technologies</h6>
+                                <h2 style="color: white; text-shadow: 0 2px 2px #000;" >Latest Gadgets and Accessories</h2>
+                                <p style="color: rgb(5, 5, 5);   text-shadow: 0 2px 2px #f8f0f0;" >providing quality and advanced Technologies which improve our daily life experience</p>
+                               
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    </section>
+
+    
+    <!-- Hero Section End -->
